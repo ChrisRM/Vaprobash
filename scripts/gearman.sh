@@ -46,4 +46,6 @@ if [[ $GEARMAN_IS_INSTALLED -ne 0 ]]; then
 fi
 
 # Create log directory and start listening for events
-sudo mkdir -R /usr/local/var/log
+echo ">>> Starting gearmand"
+sudo mkdir -p /usr/local/var/log
+sudo gearmand -d

@@ -96,6 +96,7 @@ Here's a quickstart screencast!
 * Utility
 	* Beanstalkd
 	* Supervisord
+	* Gearman
 * Additional Languages
 	* NodeJS via NVM
 	* Ruby via RVM
@@ -105,6 +106,8 @@ Here's a quickstart screencast!
 	* Symfony
 	* PHPUnit
 	* MailCatcher
+* Additional
+	* FFMpeg
 
 ## The Vagrantfile
 
