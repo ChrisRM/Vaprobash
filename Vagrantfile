@@ -263,6 +263,13 @@ Vagrant.configure("2") do |config|
   # config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/git-ftp.sh", privileged: false
 
   ####
+  # Additional
+  ##########
+
+  # Install FFMpeg
+  config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/ffmpeg.sh"
+
+  ####
   # Local Scripts
   # Any local scripts you may want to run post-provisioning.
   # Add these to the same directory as the Vagrantfile.
