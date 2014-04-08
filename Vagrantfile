@@ -48,6 +48,7 @@ composer_packages     = [        # List any global Composer packages that you wa
 public_folder         = "/vagrant" # If installing Symfony or Laravel, leave this blank to default to the framework public directory
 laravel_root_folder   = "/vagrant/laravel" # Where to install Laravel. Will `composer install` if a composer.json file exists
 symfony_root_folder   = "/vagrant/symfony" # Where to install Symfony.
+nfs_mount_folder      = "/home/vagrant/files" # Folder to mount NFS
 nodejs_version        = "latest"   # By default "latest" will equal the latest stable version
 nodejs_packages       = [          # List any global NodeJS packages that you want to install
   #"grunt-cli",
@@ -263,11 +264,17 @@ Vagrant.configure("2") do |config|
   # config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/git-ftp.sh", privileged: false
 
   ####
-  # Additional
+  # Custom
   ##########
 
   # Install FFMpeg
-  config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/scripts/ffmpeg.sh"
+  config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/custom/ffmpeg.sh"
+
+  # Install NFS Server. Args need to contain the IP's of the NFS clients
+  config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/custom/nfs-server.sh", args: ["192.168.33.201", "192.168.33.202"]
+
+  # Install NFS Client. Arg is the IP of the NFS server
+  config.vm.provision "shell", path: "https://raw.github.com/#{github_username}/#{github_repo}/#{github_branch}/custom/nfs-client.sh", args: ["192.168.33.10", nfs_mount_folder]
 
   ####
   # Local Scripts
